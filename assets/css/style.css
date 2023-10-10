@@ -79,6 +79,85 @@
   --alpha-10-light: hsla(0, 0%, 0%, 0.1);
   --alpha-5-light: hsla(0, 0%, 0%, 0.05);
   --overlay-bg-light: hsla(220, 8%, 56%, 0.5);
+
+
+  /* typepography */
+
+  /* font-family: ; */
+  --font-primary: "Poppins", sans-serif;
+
+  /* font -size  */
+  --base-font-size: 62.5%;
+  --title-1: 4.8rem;
+  --title-2: 2.4rem;
+  --title-3: 1.8rem;
+  --body: 1.6rem;
+  --label-1: 1.4rem;
+  --label-2: 1.2rem;
+
+  /* font - font-weight: ; */
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semiBold: 600;
+  --weight-bold: 700;
+
+  /* border-radius: ; */
+  --radius-8: 8px;
+  --radius-12: 12px;
+  --radius-24: 24px;
+  --radius-pill: 500px;
+  --radius-circle: 50%;
+
+  /* others */
+  --header-height: 72px;
+
+
+}
+
+@media (prefers-reduse-motion: no-preference) {
+  :root {
+    --transition-timing-function: cubic-bezier(0.14, 0.97, 0.59, 1);
+    --transition-short: 150ms var(--transition-timing-function);
+    --transition-medium: 250ms var(--transition-timing-function);
+    --transition-long: 500ms var(--transition-timing-function);
+  }
+  html{
+    scroll-behavior: smooth;
+  }
+}
+
+[data-theme = "dark"]{
+  color-scheme: dark;
+
+  --background:var(--background-dark);
+  --on-background:var( --on-background-dark);
+  --primary:var(--primary-dark);
+  --primary-hover:var(  --primary-hover-dark);
+  --primary-outline:var(  --primary-outline-dark);
+  --primary-outline-hover:var(  --primary-outline-hover-dark);
+  --surface:var(  --surface-dark);
+  --on-surface:var( --on-surface-dark);
+  --on-surface-2:var( --on-surface-2-dark);
+  --surface-variant:var( --surface-variant-dark);
+  --surface-variant-hover:var( --surface-variant-hover-dark);
+  --on-surface-variant:var( --on-surface-variant-dark);
+  --surface-variant-outline:var( --surface-variant-outline-dark);
+  --surface-variant-outline-hover:var( --surface-variant-outline-hover-dark)
+  --error: var( --error-dark);
+  --error-alpha-10:var(--error-alpha-10-dark);
+  --outline:var(--outline-dark);
+  --surface-1:var( --surface-1-dark);
+  --surface-1-hover:var( --surface-1-hover-dark);
+  --surface-1-outline:var( --surface-1-outline-dark);
+  --surface-1-outline-hover:var( --surface-1-outline-hover-dark);
+  --alpha-80:var( --alpha-80-dark);
+  --alpha-70:var(--alpha-70-dark);
+  --alpha-60:var(--alpha-60-dark);
+  --alpha-50 :var(--alpha-50-dark);
+  --alpha-10:var(--alpha-10-dark);
+  --alpha-5:var(--alpha-5-dark);
+  --overlay-bg:var(--overlay-bg-dark);
 }
 
 
