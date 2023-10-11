@@ -264,7 +264,7 @@ body {
   display: flex;
   flex-direction: column;
   padding-block: var(--header-height);
-  /* height: 300vh; */
+  height: 300vh;
 }
 
 ::-webkit-scrollbar {
