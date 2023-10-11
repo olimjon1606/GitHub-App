@@ -263,8 +263,17 @@ body {
   display: flex;
   flex-direction: column;
   padding-block: var(--header-height);
+  /* height: 300vh; */
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--surface-variant);
+  border-radius: var(--radius-pill);
+}
 
 /*-----------------------------------*\
   #UTILITY
