@@ -329,7 +329,29 @@ body {
   #SKIP TO CONTENT
 \*-----------------------------------*/
 
+.skip-to-content {
+  position: fixed;
+  top: 4px;
+  left: 4px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  background-color: var(--on-background);
+  padding-inline: 24px;
+  color: var(--background);
+  font-size: var(--label-1);
+  font-weight: var(--weight-medium);
+  border-radius: var(--radius-8);
+  outline-offset: 2px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+}
 
+.skip-to-content:focus-visible {
+  opacity: 1;
+  pointer-events: all;
+}
 
 
 
