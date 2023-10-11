@@ -256,6 +256,7 @@ body {
   color: var(--on-background);
   font-family: var(--font-primary);
   font-weight: var(--weight-regular);
+  font-size: var(--label-1);
   line-height: 20px;
   letter-spacing: 0.2px;
   min-height: 100vh;
