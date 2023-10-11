@@ -1,7 +1,7 @@
 /**
  * @license MIT
- * @author codewithsadee <mohammadsadee24@gmail.com>
- * @copyright codewithsadee 2023
+ * @author codewithsadee <olimjon.coder@gmail.com>
+ * @copyright O.Olimjon 2023
  */
 
 

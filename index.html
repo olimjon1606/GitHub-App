@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" data-theme="dark">
+<html lang="en" dir="ltr">
 
 <head>
     <meta charset="UTF-8">
@@ -11,9 +11,7 @@
     <link rel="stylesheet" href="./favicon.svg" type="image/svg+xml">
 
     <!-- JS theme-->
-    <script src="./assets/js/theme.js">
 
-    </script>
 
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +36,7 @@
 
 
     <!-- <Header></Header> -->
-    <header class="header">
+    <header class="header" data-header>
         <div class="container">
             <a href="/" class="logo">
                 <span class="text-primary">Git</span>Finder
@@ -54,7 +52,7 @@
                 <div class="search-box" id="searchBox">
                     <span class="material-symbols-rounded leading-icon" aria-hidden="true">search</span>
                     <input type="search" name="search" aria-label="Search github username"
-                        placeholder="Search username*" class="search-field lael-1" data-search-field>
+                        placeholder="Search: #username" class="search-field lael-1" data-search-field>
 
                     <button class="search-btn" aria-label="Search submit" data-search-submit>
                         <span class="material-symbols-rounded" aria-hidden="true">search</span>
@@ -64,12 +62,16 @@
             </div>
 
             <button class="icon-btn theme-btn" aria-pressed="false" aria-label="Toggle dark and light theme"
-                dark-theme-btn>
+                data-theme-btn>
                 <span class="material-symbols-rounded sun-icon" aria-hidden="true">light_mode</span>
                 <span class="material-symbols-rounded moon-icon" aria-hidden="true">dark_mode</span>
             </button>
         </div>
     </header>
+
+    <script src="./assets/js/theme.js">
+
+    </script>
 </body>
 
 </html>
