@@ -715,6 +715,7 @@ body {
   color: var(--on-background);
   font-weight: var(--weight-medium);
 }
+.profile .footer{display: none;}
 
 /*-----------------------------------*\
   #TAB
