@@ -38,12 +38,3 @@ $searchToggler.addEventListener("click", function () {
     this.setAttribute("aria-expanded", isExpanded);
     $searchField.focus()
 })
-
-const currentYear = new Date().getFullYear();
-
-// Find the HTML element to display the year
-// const yearElement = document.getElementById('current-year');
-
-// Update the element's content with the current year
-// yearElement.textContent = currentYear;
-console.log(currentYear)
