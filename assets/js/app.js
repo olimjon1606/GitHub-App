@@ -79,3 +79,34 @@ addEventOnElements($tabBtns, "keydown", function (e) {
         $previousElement.focus();
     }
 })
+
+
+const $searchSubmit = document.querySelector("[data-search-submit]")
+
+let apiUrl = "https://api.github.com/users/olimjon1606"
+let repoUrl, followerUrl, followingUrl = ""
+
+const searchUser = function () {
+    if (!$searchField.value) return;
+    apiUrl = `https://api.github.com/users/${$searchField.value}`
+
+    updateProfile(apiUrl)
+}
+
+$searchSubmit.addEventListener("click", searchUser);
+$searchField.addEventListener("keydown", e => {
+    if (e.key === "Enter") searchUser();
+});
+
+// Profile
+
+const $profileCard = document.querySelector("[data-profile-card]");
+const $repoPanel = document.querySelector("[data-repo-panel]");
+const $error = document.querySelector("[data-error]");
+
+window.updateProfile = function (profileUrl) {
+    $error.style.display = "none";
+    document.body.style.overflowY = "visible";
+
+    $profileCard.innerHTML = ``;
+}
