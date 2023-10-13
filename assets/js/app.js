@@ -108,5 +108,19 @@ window.updateProfile = function (profileUrl) {
     $error.style.display = "none";
     document.body.style.overflowY = "visible";
 
-    $profileCard.innerHTML = ``;
+    $profileCard.innerHTML = ` 
+        <div class="profile-skeleton">
+            <div class="skeleton avatar-skeleton"></div>
+            <div class="skeleton title-skeleton"></div>
+            <div class="skeleton text-skeleton"></div>
+            <div class="skeleton text-skeleton text-1"></div>
+            <div class="skeleton text-skeleton text-2"></div>
+            <div class="skeleton text-skeleton text-3"></div>
+        </div>
+    `;
+
+    $tabBtns[0].click()
+    $repoPanel.innerHTML = `
+    
+    `
 }
