@@ -7,6 +7,8 @@
 
 'use strict';
 
+import { fetchData } from "./api.js";
+
 
 // @param { NodeList } $elements NodeList
 // @param { String }eventType String
