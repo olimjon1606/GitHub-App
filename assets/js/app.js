@@ -5,19 +5,9 @@
  */
 
 'use strict';
-// import { fetchData } from "./api";
+import { fetchData } from "./api.js";
+import { numberToKilo } from "./module.js";
 
-async function fetchData(url, successCallback, errorCallback) {
-    const response = await fetch(url)
-
-    if (response.ok) {
-        const data = await response.json();
-        successCallback(data)
-    } else {
-        const error = await response.json()
-        errorCallback && errorCallback(error)
-    }
-}
 
 
 const addEventOnElements = function ($elements, eventType, callback) {
@@ -223,11 +213,11 @@ window.updateProfile = function (profileUrl) {
             </li>
 
             <li class="stats-item">
-                <span class="body">${followers}</span>Followers
+                <span class="body">${numberToKilo(followers)}</span>Followers
             </li>
 
             <li class="stats-item">
-                <span class="body">${following}</span>Following
+                <span class="body">${numberToKilo(following)}</span>Following
             </li>
         </ul>
 
