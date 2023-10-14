@@ -224,7 +224,9 @@ window.updateProfile = function (profileUrl) {
         <div class="footer">
             <p class="copyright">&copy; 2023 O.Olimjon</p>
         </div>
-        `
+        `;
+
+        updateRepository();
 
     }, () => {
         $error.style.display = "grid";
@@ -237,3 +239,177 @@ window.updateProfile = function (profileUrl) {
     });
 }
 updateProfile(apiUrl)
+
+
+// Repository
+
+let forkedRepos = []
+const updateRepository = function () {
+    fetchData(`${repoUrl}?sort=created&per_page=12`, function (data) {
+        $repoPanel.innerHTML = `<h2 class="sr-only">Repositories</h2>`;
+        forkedRepos = data.filter(item => item.fork);
+
+        const repositories = data.filter(i => !i.fork);
+        if (repositories.length) {
+            for (const repo of repositories) {
+                const {
+                    name,
+                    html_url,
+                    description,
+                    private: isPrivate,
+                    language,
+                    stargazers_count: stars_count,
+                    forks_count
+                } = repo;
+                const $repoCard = document.createElement("article");
+                $repoCard.classList.add("card", "repo-card");
+
+                $repoCard.innerHTML = `<div class="card-body">
+                                            <a href="${html_url}" target="_blank" class="card-title">
+                                                <h3 class="title-3">
+                                                    ${name}
+                                                </h3>
+                                            </a>
+                                            ${description ?
+                        `<p class="card-text">
+                                                    ${description}
+                                                </p>`: ""}
+                                            <span class="badge">${isPrivate ? "Private" : "Public"}</span>
+                                        </div>
+
+                                        <div class="card-footer">
+                                        ${language ? `<div class="meta-item">
+                                                        <span class="material-symbols-rounded" aria-hidden="true">code_blocks</span>
+                                                        <span class="span">${language}</span>
+                                                    </div>`: ""}
+                                            
+
+                                            <div class="meta-item">
+                                                <span class="material-symbols-rounded" aria-hidden="true">star_rate</span>
+                                                <span class="span">${numberToKilo(stars_count)}</span>
+                                            </div>
+
+                                            <div class="meta-item">
+                                                <span class="material-symbols-rounded" aria-hidden="true">family_history</span>
+                                                <span class="span">${numberToKilo(forks_count)}</span>
+                                            </div>
+                                        </div>`;
+
+                $repoPanel.appendChild($repoCard);
+            }
+        } else {
+            $repoPanel.innerHTML = `<div class="error-content">
+                                        <p class="title-1">Oops! :(</p>
+                                        <p class="text">Doesn't have any public Repositories yet.</p>
+                                    </div>`;
+        }
+    });
+}
+
+const $forkedPanel = document.querySelector("[data-fork-panel");
+const $forkTabBtn = document.querySelector("[data-forked-tab-btn]");
+const updateForkRepo = function () {
+    $forkedPanel.innerHTML = `<h2 class="sr-only">Forked repositories</h2>`;
+    if (forkedRepos.length) {
+        for (const repo of forkedRepos) {
+            const {
+                name,
+                html_url,
+                description,
+                private: isPrivate,
+                language,
+                stargazers_count: stars_count,
+                forks_count
+            } = repo;
+            const $forkCard = document.createElement("article");
+            $forkCard.classList.add("card", "repo-card");
+
+            $forkCard.innerHTML = `<div class="card-body">
+                                        <a href="${html_url}" target="_blank" class="card-title">
+                                            <h3 class="title-3">
+                                                ${name}
+                                            </h3>
+                                        </a>
+                                        ${description ?
+                    `<p class="card-text">
+                                                ${description}
+                                            </p>`: ""}
+                                        <span class="badge">${isPrivate ? "Private" : "Public"}</span>
+                                    </div>
+
+                                    <div class="card-footer">
+                                    ${language ? `<div class="meta-item">
+                                                    <span class="material-symbols-rounded" aria-hidden="true">code_blocks</span>
+                                                    <span class="span">${language}</span>
+                                                </div>`: ""}
+                                        
+
+                                        <div class="meta-item">
+                                            <span class="material-symbols-rounded" aria-hidden="true">star_rate</span>
+                                            <span class="span">${numberToKilo(stars_count)}</span>
+                                        </div>
+
+                                        <div class="meta-item">
+                                            <span class="material-symbols-rounded" aria-hidden="true">family_history</span>
+                                            <span class="span">${numberToKilo(forks_count)}</span>
+                                        </div>
+                                    </div>`;
+
+            $forkedPanel.appendChild($forkCard);
+        }
+    } else {
+        $forkedPanel.innerHTML = `<div class="error-content">
+                                    <p class="title-1">Oops! :(</p>
+                                    <p class="text">Doesn't have any forked repositories yet.</p>
+                                </div>`;
+    }
+}
+
+$forkTabBtn.addEventListener("click", updateForkRepo);
+
+// Followers
+const $followerTabBtn = document.querySelector("[data-follower-tab-btn]");
+const $followerPanel = document.querySelector("[data-folower-panel]");
+
+const updateFollower = function () {
+    $followerPanel.innerHTML = `
+    <div class="card follower-skeleton">
+        <div class="skeleton avatar-skeleton"></div>
+        <div class="skeleton title-skeleton"></div>
+    </div>`.repeat(12);
+
+    fetchData(followerUrl, function (data) {
+        $followerPanel.innerHTML = `<h2 class="sr-only">Followers</h2>`;
+
+        if (data.length) {
+            for (const item of data) {
+                const {
+                    login: username,
+                    avatar_url,
+                    url
+                } = item;
+
+                const $followerCard = document.createElement("article");
+                $followerCard.classList.add("card", "follower-card");
+
+                $followerCard.innerHTML = `<figure class="avatar-circle img-holder">
+                                                <img src="${avatar_url}&s=64" loading="lazy" alt="${username}" width="56"
+                                                    height="56" class="img-cover">
+                                            </figure>
+                                            <h3 class="card-title">${username}</h3>
+                                            <button class="icon-btn" onclick="updateProfile(\'${url}\')" aria-label="Go to ${username} profile">
+                                                <span class="material-symbols-rounded" aria-hidden="true">link</span>
+                                            </button>`;
+
+                $followerPanel.appendChild($followerCard)
+
+            }
+        } else {
+            $followerPanel.innerHTML = `<div class="error-content">
+                                            <p class="title-1">Oops! :(</p>
+                                            <p class="text">Doesn't have any follower yet.</p>
+                                        </div>`;
+        }
+    })
+}
+$followerTabBtn.addEventListener("click", updateFollower);
