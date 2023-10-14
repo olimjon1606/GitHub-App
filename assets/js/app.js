@@ -245,9 +245,10 @@ updateProfile(apiUrl)
 
 let forkedRepos = []
 const updateRepository = function () {
-    fetchData(`${repoUrl}?sort=created&per_page=12`, function (data) {
+    fetchData(`${repoUrl}?sort=created&per_page=40`, function (data) {
         $repoPanel.innerHTML = `<h2 class="sr-only">Repositories</h2>`;
         forkedRepos = data.filter(item => item.fork);
+        console.log(forkedRepos)
 
         const repositories = data.filter(i => !i.fork);
         if (repositories.length) {
